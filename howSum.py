@@ -20,5 +20,3 @@ def howSum(targetSum, array, memo = {}):
 
 if __name__ == "__main__":
     print(howSum(7, [5, 3, 4, 7 ]))
-
-    # print(poss)
