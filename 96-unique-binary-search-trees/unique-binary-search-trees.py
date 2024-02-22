@@ -14,7 +14,7 @@ class Solution:
         self.dp[n] = ans
         return ans 
     
-    def numTrees(self, n):
+    def numTrees2(self, n):
         dp = [0] * (n+1)
         dp[0],dp[1] = 1, 1
         #  number of nodes
@@ -23,3 +23,6 @@ class Solution:
             for j in range(1,n+1):
                 dp[i] += dp[j-1] * dp[i - j]
         return dp[n]
+    
+    def numTrees(self, n):
+        return (math.factorial(2*n)) // (math.factorial(n+1) * math.factorial(n))
