@@ -1,28 +1,17 @@
 class Solution:
-    def __init__(self):
-        self.dp = None 
-    def numTrees1(self, n: int) -> int:
-        if not self.dp:
-            self.dp = [-1] * (n+1)
-        if n <= 1:
-            return 1
-        if self.dp[n] != -1:
-            return self.dp[n]
-        ans = 0
-        for i in range(1,n+1):
-            ans += self.numTrees(i-1) * self.numTrees(n-i)
-        self.dp[n] = ans
-        return ans 
-    
-    def numTrees2(self, n):
-        dp = [0] * (n+1)
-        dp[0],dp[1] = 1, 1
-        #  number of nodes
-        for i in range(2, n+1):
-            # assuing j as root node
-            for j in range(1,n+1):
-                dp[i] += dp[j-1] * dp[i - j]
-        return dp[n]
-    
-    def numTrees(self, n):
-        return (math.factorial(2*n)) // (math.factorial(n+1) * math.factorial(n))
+    def numTrees(self, n: int) -> int:
+        def helper(num, dp):
+            ans = 0
+            if num <= 1:
+                return 1
+            
+            if dp[num] != -1:
+                return dp[num]
+
+            for i in range(1, num+1):
+                ans += helper(i-1, dp) * helper(num-i, dp)
+            dp[num] = ans
+            return ans 
+        dp = [-1] * (n+1)
+        return helper(n, dp) 
+
