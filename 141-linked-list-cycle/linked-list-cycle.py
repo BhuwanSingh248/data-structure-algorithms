@@ -7,7 +7,7 @@
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
         dic= {}
-        while head and head.next:
+        while head:
             if head in dic:
                 return True
             dic.update({head:head.next})
