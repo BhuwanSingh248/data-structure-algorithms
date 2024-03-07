@@ -5,6 +5,8 @@
 #         self.next = next
 class Solution:
     def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if head is None or head.next is None:
+            return head
         first, second = head, head
         while second and second.next:
             second = second.next.next
