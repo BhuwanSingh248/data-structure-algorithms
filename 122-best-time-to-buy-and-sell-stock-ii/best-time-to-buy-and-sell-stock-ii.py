@@ -33,9 +33,29 @@ class Solution:
                 dp[i][0] = max(prices[i] + dp[i+1][1], dp[i+1][0])
                 dp[i][1] = max(-prices[i] + dp[i+1][0], dp[i+1][1])
             return dp[0][1]
-        return bottomUP()
+        
+
+        # bottomup dp with space optimization
+        def bottomUpSpaceOptimized():
+            # values depends on next value's buy or sell so will keep 4 vars
+            # dp[i+1][1] --> next_buy
+            # dp[i+1][0] --> next sell
+            # dp[i][1] --> current_buy
+            # dp[i][0] --> current_sell
+
+            next_buy, next_sell, current_buy, current_sell = 0,0,0,0
+
+            for i in range(len(prices)-1, -1, -1):
+                current_buy = max(-prices[i] + next_sell, next_buy)
+                current_sell = max(prices[i] + next_buy, next_sell)
+                next_buy = current_buy
+                next_sell = current_sell
+            
+            return next_buy
 
         # return helper(0, 1)
         # dp = [[-1] * 2 for _ in prices]
         # ans = helperDP(0, 1,dp)
         # return ans
+        # return bottomUP()
+        return bottomUpSpaceOptimized()
