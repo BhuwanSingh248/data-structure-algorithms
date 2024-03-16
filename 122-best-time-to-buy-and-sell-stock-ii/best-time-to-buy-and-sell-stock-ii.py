@@ -12,6 +12,7 @@ class Solution:
                 profit = max(prices[i] + helper(i+1, 1), helper(i+1, 0))
             return profit
 
+        #  using top down dp
         def helperDP(i, buy, dp):
             if i >= len(prices):
                 return 0
@@ -25,7 +26,16 @@ class Solution:
             dp[i][buy] = profit
             return profit
 
+        # using bottom up dp
+        def bottomUP():
+            dp = [[0] * 2 for _ in range(len(prices) + 1)]
+            for i in range(len(prices)-1, -1, -1):
+                dp[i][0] = max(prices[i] + dp[i+1][1], dp[i+1][0])
+                dp[i][1] = max(-prices[i] + dp[i+1][0], dp[i+1][1])
+            return dp[0][1]
+        return bottomUP()
+
         # return helper(0, 1)
-        dp = [[-1] * 2 for _ in prices]
-        ans = helperDP(0, 1,dp)
-        return ans
+        # dp = [[-1] * 2 for _ in prices]
+        # ans = helperDP(0, 1,dp)
+        # return ans
