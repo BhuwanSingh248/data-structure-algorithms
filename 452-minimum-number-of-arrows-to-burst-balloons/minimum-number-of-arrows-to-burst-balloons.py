@@ -1,6 +1,6 @@
 class Solution:
     def findMinArrowShots(self, points: List[List[int]]) -> int:
-        points.sort()
+        points.sort(key = lambda x:x[0])
         count = 1
         start, end = points[0]
 
