@@ -1,3 +1,4 @@
+@lru_cache
 class Solution:
     def firstMissingPositive(self, nums: List[int]) -> int:
         n  = len(nums)
