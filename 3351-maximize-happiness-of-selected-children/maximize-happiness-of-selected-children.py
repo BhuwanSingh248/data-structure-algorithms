@@ -8,5 +8,7 @@ class Solution:
             temp = happiness[index] - index
             if temp >= 0:
                 ans += temp
+            else:
+                break
             index += 1
         return ans
