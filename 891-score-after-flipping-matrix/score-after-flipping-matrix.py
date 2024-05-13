@@ -3,7 +3,7 @@ class Solution:
         n = len(grid)
         m = len(grid[0])
 
-        ans = n * (1 << (m-1 -0))
+        ans = n * (1 << (m-1))
 
         for j in range(1,m):
             cnt = 0 
