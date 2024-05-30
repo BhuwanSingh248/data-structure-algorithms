@@ -4,16 +4,11 @@ class Solution:
         n = len(arr)
 
         for i in range(n):
-            for j in range(i+1, n):
-                a = 0
-                for k in range(i, j):
-                    a^=arr[k]
+            val = arr[i]
 
-                b = 0
-                for k in range(j, n):
-                    b ^= arr[k]
+            for k in range(i+1, n):
+                val ^= arr[k]
 
-                    if a == b:
-                        count += 1
-
+                if val == 0:
+                    count += (k-i)
         return count
