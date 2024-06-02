@@ -3,10 +3,19 @@ class Solution:
         """
         Do not return anything, modify s in-place instead.
         """
-        i, j = 0, -1
-
-        while( i <= len(s)//2 and abs(j) <= len(s)//2):
-            s[i], s[j] = s[j], s[i]
-            i+=1
-            j-=1
-        
+        # left = 0
+        # right = len(s)-1
+        # while left < right:
+        #     temp = s[left]
+        #     s[left] = s[right]
+        #     s[right] = temp
+        #     left+=1
+        #     right-=1
+        # for i in range (len(s)-1,-1,-1):
+        #     s.append(s[i])
+        #     s.pop(i)
+        # s[:] = s[::-1]
+    with open("user.out", "w") as f:
+        for case in stdin:
+            f.write(f"{dumps(loads(case.strip())[::-1]).replace(', ', ',')}\n")
+    exit()
