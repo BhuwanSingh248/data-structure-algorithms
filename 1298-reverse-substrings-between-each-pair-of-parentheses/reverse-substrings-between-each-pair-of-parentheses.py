@@ -15,8 +15,6 @@ class Solution:
                         break
                     temp += val
                 stack.append(temp[::-1])
-        
-        print(stack)
         ans = ""
         while stack:
             val = stack.pop()
