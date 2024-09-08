@@ -58,4 +58,13 @@ class Solution:
         # ans = helperDP(0, 1,dp)
         # return ans
         # return bottomUP()
-        return bottomUpSpaceOptimized()
+        def btbss2():
+            i = 1
+            n = len(prices)
+            profit = 0
+            while i < n:
+                if prices[i] > prices[i-1]:
+                    profit += prices[i] - prices[i-1]
+                i+=1
+            return profit
+        return btbss2()
