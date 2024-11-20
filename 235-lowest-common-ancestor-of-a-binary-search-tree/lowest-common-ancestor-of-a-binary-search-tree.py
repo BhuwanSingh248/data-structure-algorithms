@@ -13,7 +13,7 @@ class Solution:
         elif p.val == root.val or q.val == root.val:
             return root
         
-        if p.val > q.val:
+        if p.val > q.val:  #swap values for easy logics
             p, q = q, p
         
         if p.val < root.val and q.val > root.val:
