@@ -10,6 +10,9 @@ class Solution:
         if not root:
             return None
         
+        elif p.val == root.val or q.val == root.val:
+            return root
+        
         if p.val > q.val:
             p, q = q, p
         
@@ -22,7 +25,5 @@ class Solution:
         elif p.val < root.val and q.val < root.val:
             return self.lowestCommonAncestor(root.left, p,  q)
 
-        elif p.val == root.val or q.val == root.val:
-            return root
 
         return None
