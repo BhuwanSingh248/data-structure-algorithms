@@ -14,8 +14,6 @@ class Solution:
             if nums[i] > nums[i+1]:
                 start = i
                 break
-        print(nums[start+1:len(nums)])
-        print(nums[0: start+1])
         arr = nums[start+1:len(nums)] + nums[0: start+1]
         print(arr)
         return is_sorted(arr)
