@@ -1,17 +1,22 @@
+from itertools import combinations
 class Solution:
     def subsetXORSum(self, nums: List[int]) -> int:
-    
-        def generate_subsets( nums: List[int], index: int, current_XOR: int) -> int:
-            # Return current_XOR when all elements in nums are already considered
-            if index == len(nums): return current_XOR
-            
-            # Calculate sum of subset xor with current element
-            with_element = generate_subsets(nums, index + 1, current_XOR ^ nums[index])
-            
-            # Calculate sum of subset xor without current element
-            without_element = generate_subsets(nums, index + 1, current_XOR)
-            
-            # Return sum of xor totals
-            return with_element + without_element
+        ans = 0
+        n = len(nums)
+        for i in range(0, n+1):
+            ans += self.calculate_xor(combinations(nums, i))
+                
+        return ans 
 
-        return generate_subsets(nums, 0, 0)
+    def calculate_xor(self, arr:List[int]):
+        ans = 0
+        # print(arr)
+        for i in arr:
+            xor = 0
+            for j in i:
+                xor ^= j
+            print(list(i), ":"  ,xor)
+            ans += xor
+        return ans
+
+
