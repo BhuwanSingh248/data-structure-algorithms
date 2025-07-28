@@ -1,5 +1,5 @@
 class Solution:
-    def findPeakElement(self, nums: List[int]) -> int:
+    def findPeakElements(self, nums: List[int]) -> int:
         left = 0
         right = len(nums) - 1 
         while left < right:
@@ -10,3 +10,6 @@ class Solution:
                 left = mid + 1
         
         return left
+    
+    def findPeakElement(self, nums: List[int]) -> int:
+        return nums.index(max(nums))
