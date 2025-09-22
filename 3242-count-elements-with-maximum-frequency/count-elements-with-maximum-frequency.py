@@ -1,12 +1,12 @@
 class Solution:
     def maxFrequencyElements(self, nums: List[int]) -> int:
-        nums_count = Counter(nums)
-        nums_common = nums_count.most_common()
-        ans = nums_common[0][1]
-        for i in range(1,len(nums_common)):
-            if nums_common[i][1] == nums_common[0][1]:
-                ans += nums_common[i][1]
+        counter = {}
+        for i in nums:
+            if i in counter:
+                counter[i] += 1
             else:
-                break
-        return ans 
-            
+                 counter[i] = 1
+
+        max_element = max(counter.values())
+        count = list(counter.values()).count(max_element)
+        return count * max_element
