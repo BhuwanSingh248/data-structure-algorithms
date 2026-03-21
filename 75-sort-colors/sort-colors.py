@@ -3,20 +3,26 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        once, zeroes, n = 0, 0, len(nums)
+        once = 0
+        twos = 0
+        zeros = 0
 
         for i in nums:
             if i == 0:
-                zeroes += 1
-            if i ==1 :
-                once+=1
+                zeros += 1
+            elif i == 1:
+                once += 1
+            else:
+                twos += 1
 
+        for i in range(len(nums)):
+            if zeros:
+                nums[i] = 0
+                zeros -= 1
 
-        for i in range(zeroes):
-            nums[i] = 0
-        
-        for i in range(zeroes, zeroes+once):
-            nums[i] = 1
-        
-        for i in range(zeroes+once, n):
-            nums[i] = 2
+            elif once:
+                nums[i] = 1
+                once -= 1
+            else:
+                nums[i] =2
+                
