@@ -3,15 +3,18 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
-        row, col = set(), set()
-
-        for i in range(len(matrix)):
-            for j in range(len(matrix[0])):
+        n = len(matrix)
+        m = len(matrix[0])
+        for i in range(n):
+            for j in range(m):
                 if matrix[i][j] == 0:
-                    row.add(i)
-                    col.add(j)
+                    for k in range(n):
+                        matrix[k][j] = 'flag' if matrix[k][j] != 0 else 0
 
-        for i in range(len(matrix)):
-            for j in range(len(matrix[0])):
-                if i in row or j in col:
+                    for k in range(m):
+                        matrix[i][k] = 'flag' if matrix[i][k] != 0 else 0
+        
+        for i in range(n):
+            for j in range(m):
+                if matrix[i][j] == 'flag':
                     matrix[i][j] = 0
