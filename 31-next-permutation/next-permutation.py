@@ -19,6 +19,6 @@ class Solution:
             if nums[i] > nums[index] and nums[i] < nums[nn]:
                 nn = i
         nums[index],nums[nn] = nums[nn], nums[index]
-        for i, j in enumerate(sorted(nums[index+1:]), index+1):
+        for i, j in enumerate(sorted(nums[index+1:]), index+1):  ## we can directly sort the array though
             nums[i] = j
         
