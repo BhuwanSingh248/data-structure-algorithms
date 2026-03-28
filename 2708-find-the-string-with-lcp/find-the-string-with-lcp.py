@@ -4,13 +4,12 @@ class Solution:
         res = [None] * n
         char_idx = 0
         
-        # 1. Greedy Assignment
+        # 1. Faster Greedy Assignment
         for i in range(n):
             if res[i] is None:
-                if char_idx >= 26: return ""  # Ran out of letters
-                curr_char = chr(ord('a') + char_idx)
+                if char_idx >= 26: return ""
+                curr_char = chr(97 + char_idx) # 97 is 'a'
                 char_idx += 1
-                # Fill all positions that must be the same character
                 for j in range(i, n):
                     if lcp[i][j] > 0:
                         res[j] = curr_char
@@ -18,18 +17,17 @@ class Solution:
         if None in res: return ""
         s = "".join(res)
         
-        # 2. Verification via Dynamic Programming
-        # We build the actual LCP of our string s to see if it matches input
-        actual_lcp = [[0] * (n + 1) for _ in range(n + 1)]
+        # 2. Optimized O(1) Extra Space Verification
+        # We check the LCP properties directly without a full DP table
         for i in range(n - 1, -1, -1):
             for j in range(n - 1, -1, -1):
+                # Basic LCP property: if chars match, LCP is 1 + next diagonal
+                val = 0
                 if s[i] == s[j]:
-                    actual_lcp[i][j] = actual_lcp[i+1][j+1] + 1
-                else:
-                    actual_lcp[i][j] = 0
+                    val = (lcp[i + 1][j + 1] if i + 1 < n and j + 1 < n else 0) + 1
                 
-                # Check against original matrix immediately
-                if actual_lcp[i][j] != lcp[i][j]:
+                # Check if calculated value matches the provided matrix
+                if lcp[i][j] != val:
                     return ""
                     
         return s
