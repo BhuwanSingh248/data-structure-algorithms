@@ -6,10 +6,12 @@
 
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        dic= {}
+        
         while head:
-            if head in dic:
+            if head.val == 'V':
                 return True
-            dic.update({head:head.next})
+            head.val = 'V'
             head = head.next
+
         return False
+
