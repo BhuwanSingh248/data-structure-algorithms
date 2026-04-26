@@ -1,12 +1,24 @@
+from collections import deque
+
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
-        dp = [amount + 1] * (amount + 1)
-
-        dp[0] = 0
-
-        for i in range(1, amount+1):
-            for coin in coins:
-                if i - coin >= 0:
-                    dp[i] = min(dp[i], 1 + dp[i-coin])
+        if amount == 0:
+            return 0
         
-        return dp[amount] if dp[amount] != amount + 1 else -1
+        queue = deque([(0, 0)])  # (current_sum, num_coins)
+        visited = {0}
+        
+        while queue:
+            current_sum, steps = queue.popleft()
+            
+            for coin in coins:
+                next_sum = current_sum + coin
+                
+                if next_sum == amount:
+                    return steps + 1
+                
+                if next_sum < amount and next_sum not in visited:
+                    visited.add(next_sum)
+                    queue.append((next_sum, steps + 1))
+                    
+        return -1
