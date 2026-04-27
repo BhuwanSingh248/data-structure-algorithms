@@ -24,7 +24,7 @@ class Solution:
                 return
 
             for i in range(index, len(candidates)):
-                if candidates[index] > target:
+                if candidates[i] > target:
                     break
                 
                 helper(i, target - candidates[i], path + [candidates[i]])
