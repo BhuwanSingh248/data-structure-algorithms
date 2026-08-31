@@ -5,31 +5,24 @@
 #         self.next = next
 class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
-        if not head and not head.next:
-            return True
-
-        slow = fast = head
-
-        while fast.next and fast.next.next:
-            slow = slow.next
+        fast = slow = head
+        while fast and fast.next:
             fast = fast.next.next
+            slow = slow.next
 
-        second_half_ll = self.reverseList(slow.next)
-        start = head
-        while second_half_ll:
-            if start.val != second_half_ll.val:
-                return False
-
-            start = start.next
-            second_half_ll = second_half_ll.next
-        return True
-
-    def reverseList(self, head):
         prev = None
-        curr = head
+        current = slow
+        while current :
+            nxt = current.next
+            current.next = prev
+            prev = current
+            current = nxt
 
-        while curr:
-            next_node = curr.next
-            curr.next = prev
-            prev, curr = curr, next_node
-        return prev
+        start = head
+        mid = prev
+        while mid:
+            if start.val != mid.val:
+                return False
+            mid = mid.next
+            start = start.next
+        return True
