@@ -13,4 +13,3 @@ class Solution:
             ans = max(ans, end-start)
         return ans
 
-__import__("atexit").register(lambda: open("display_runtime.txt", "w").write("0"))
