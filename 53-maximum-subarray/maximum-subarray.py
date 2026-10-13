@@ -7,4 +7,4 @@ class Solution:
             max_so_far = max(i, max_so_far + i)
             max_sum = max(max_so_far, max_sum)
 
-        return max(max_so_far, max_sum)
+        return max_sum
